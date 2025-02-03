@@ -1,21 +1,16 @@
+#!/usr/bin/env nextflow
+
 include {PROKKA} from './modules/prokka'
+include {SAMTOOLS_FAIDX} from './modules/samtools'
 
 workflow {
-    //Replace this section with your first channel declaration
-    //I recommend you use the `|` operator to keep your channel
-    //creation well formatted and easy to read
 
-    /* Example below:
+    Channel.fromPath(params.samplesheet)
+    | splitCsv(header: true)
+    | map { row -> tuple(row.name, file(row.path))}
+    | set { fa_ch }
 
-    Channel.fromPath()
-    | nextflow_operator()
-    | next nextflow_operator()
-    | view() or set { }
-    
-    view() will print the channel contents to stdout
-    set { } will assign that channel to a variable you can reference
-    */
+    PROKKA(fa_ch)
+    SAMTOOLS_FAIDX(fa_ch)
 
-
-    
 }

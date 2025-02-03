@@ -2,8 +2,8 @@
 
 process PROKKA {
     label 'process_single'
-    conda 
-    publishDir 
+    conda "envs/prokka_env.yml"
+    publishDir params.outdir
 
     input:
     tuple val(name), path(genome)
@@ -14,6 +14,6 @@ process PROKKA {
 
     shell:
     """
-
+    prokka --cpus 1 --outdir $name --prefix $name $genome
     """
 }
