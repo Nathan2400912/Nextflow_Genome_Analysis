@@ -14,6 +14,6 @@ process PROKKA {
 
     shell:
     """
-    prokka --outdir $name --prefix $name --cpus 1 $genome
+    prokka --cpus 1 --outdir $name --prefix $name $genome
     """
 }
