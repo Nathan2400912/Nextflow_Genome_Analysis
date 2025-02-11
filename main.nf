@@ -2,6 +2,8 @@
 
 include {PROKKA} from './modules/prokka'
 include {SAMTOOLS_FAIDX} from './modules/samtools'
+include {EXTRACT_REGION} from './modules/extract_region'
+include {SAMTOOLS_FAIDX_SUBSET} from './modules/samtools_faidx_subset'
 
 workflow {
 
@@ -13,4 +15,10 @@ workflow {
     PROKKA(fa_ch)
     SAMTOOLS_FAIDX(fa_ch)
 
+    EXTRACT_REGION(PROKKA.out.gff)
+
+    subset_ch = SAMTOOLS_FAIDX.out.combine(EXTRACT_REGION.out)
+
+    //subset_ch.view()
+    SAMTOOLS_FAIDX_SUBSET(subset_ch)
 }

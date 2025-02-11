@@ -10,7 +10,7 @@ process EXTRACT_REGION {
     tuple val(name), path(gff)
 
     output:
-    tuple val(name), path("*.txt")
+    path("*.txt") //removed tuple val(name)
 
     script:
     """

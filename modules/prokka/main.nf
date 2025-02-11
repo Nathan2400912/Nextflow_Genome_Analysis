@@ -10,7 +10,7 @@ process PROKKA {
 
     output:
     path("$name/")
-    path("**/*.gff"), emit: gff
+    tuple val(name), path("**/*.gff"), emit: gff
 
     shell:
     """
