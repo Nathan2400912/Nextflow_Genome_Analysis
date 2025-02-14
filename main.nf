@@ -17,8 +17,7 @@ workflow {
 
     EXTRACT_REGION(PROKKA.out.gff)
 
-    subset_ch = SAMTOOLS_FAIDX.out.combine(EXTRACT_REGION.out)
+    subset_ch = SAMTOOLS_FAIDX.out.join(EXTRACT_REGION.out)
 
-    //subset_ch.view()
     SAMTOOLS_FAIDX_SUBSET(subset_ch)
 }
