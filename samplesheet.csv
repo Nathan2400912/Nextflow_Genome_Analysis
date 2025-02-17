@@ -1,2 +1,4 @@
 name,path
 genomeA,refs/genomeA.fna
+genomeB,refs/genomeB.fna
+genomeC,refs/genomeC.fna
