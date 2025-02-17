@@ -1,0 +1,8 @@
+name: jupyter_base
+channels:
+- bioconda
+- conda-forge
+
+dependencies:
+- ipykernel=6.29.5
+- pycirclize=1.9.0
